@@ -1,8 +1,8 @@
 /*选项卡切换*/
 (function () {
     var boxList = utils.getElementsByClass("box");
-    var box1 = new zhufengTab(boxList[0], 0);
-    var box2 = new zhufengTab(boxList[1], 0);
+    var box1 = new zyyTab(boxList[0], 0);
+    var box2 = new zyyTab(boxList[1], 0);
 })();
 
 /*recommend_shop 鼠标滑过显示隐藏*/
@@ -74,10 +74,10 @@
     var bar_two = utils.getElementsByClass("bar_two")[0];
 
     relative_div.onmouseenter = function () {
-        zhufengAnimate(bar_two, {left: 0}, 300);
+        zyyAnimate(bar_two, {left: 0}, 300);
     };
     relative_div.onmouseleave = function () {
-        zhufengAnimate(bar_two, {left: 38}, 300);
+        zyyAnimate(bar_two, {left: 38}, 300);
     };
 
     var cart = utils.getElementsByClass("xs");
@@ -122,7 +122,6 @@
         var dropDa = drop[i];
         dropDa.index = i;
         dropDa.onmouseenter = function () {
-            //var cc = utils.lastChild(this, "down");
             down[this.index].style.display = "block";
         };
         dropDa.onmouseleave = function () {
@@ -145,7 +144,7 @@
             link_side.style.top = 0;
         }
         step++;
-        zhufengAnimate(link_side, {top: -step * 32}, 500);
+        zyyAnimate(link_side, {top: -step * 32}, 500);
     }
 }();
 
@@ -227,7 +226,6 @@
      * @param {string} value 要搜索的关键字
      */
     function callBaiDu(value) {
-
         jsonp('http://suggestion.baidu.com/su', {wd: value}, 'cb', function (data) {
             var fragement = document.createDocumentFragment();
             for (var i = 0, len = data.s.length; i < len; i++) {

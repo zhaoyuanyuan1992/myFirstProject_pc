@@ -1,7 +1,6 @@
-//->http://tool.css-js.com/
 ~function () {
-    //->珠峰培训TWEEN算法公式
-    var zhufengEffect = {
+    //->TWEEN算法公式
+    var zyyEffect = {
         //匀速
         Linear: function (t, b, c, d) {
             return c * t / d + b;
@@ -9,7 +8,7 @@
         //指数衰减的反弹缓动
         Bounce: {
             easeIn: function (t, b, c, d) {
-                return c - zhufengEffect.Bounce.easeOut(d - t, 0, c, d) + b;
+                return c - zyyEffect.Bounce.easeOut(d - t, 0, c, d) + b;
             },
             easeOut: function (t, b, c, d) {
                 if ((t /= d) < (1 / 2.75)) {
@@ -24,9 +23,9 @@
             },
             easeInOut: function (t, b, c, d) {
                 if (t < d / 2) {
-                    return zhufengEffect.Bounce.easeIn(t * 2, 0, c, d) * .5 + b;
+                    return zyyEffect.Bounce.easeIn(t * 2, 0, c, d) * .5 + b;
                 }
-                return zhufengEffect.Bounce.easeOut(t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+                return zyyEffect.Bounce.easeOut(t * 2 - d, 0, c, d) * .5 + c * .5 + b;
             }
         },
         //二次方的缓动
@@ -180,34 +179,34 @@
     };
 
     function move(curEle, target, duration, effect, callBack) {
-        var tempEffect = zhufengEffect.Linear;
+        var tempEffect = zyyEffect.Linear;
         if (typeof effect === "number") {
             switch (effect) {
                 case 0:
-                    tempEffect = zhufengEffect.Linear;
+                    tempEffect = zyyEffect.Linear;
                     break;
                 case 1:
-                    tempEffect = zhufengEffect.Circ.easeInOut;
+                    tempEffect = zyyEffect.Circ.easeInOut;
                     break;
                 case 2:
-                    tempEffect = zhufengEffect.Elastic.easeOut;
+                    tempEffect = zyyEffect.Elastic.easeOut;
                     break;
                 case 3:
-                    tempEffect = zhufengEffect.Back.easeOut;
+                    tempEffect = zyyEffect.Back.easeOut;
                     break;
                 case 4:
-                    tempEffect = zhufengEffect.Bounce.easeOut;
+                    tempEffect = zyyEffect.Bounce.easeOut;
                     break;
                 case 5:
-                    tempEffect = zhufengEffect.Expo.easeIn;
+                    tempEffect = zyyEffect.Expo.easeIn;
             }
         } else if (effect instanceof Array) {
-            tempEffect = effect.length >= 2 ? zhufengEffect[effect[0]][effect[1]] : zhufengEffect[effect[0]];
+            tempEffect = effect.length >= 2 ? zyyEffect[effect[0]][effect[1]] : zyyEffect[effect[0]];
         } else if (typeof effect === "function") {
             callBack = effect;
         }
         
-        window.clearInterval(curEle.zhufengTimer);
+        window.clearInterval(curEle.zyyTimer);
         var begin = {}, change = {};
         for (var key in target) {
             if (target.hasOwnProperty(key)) {
@@ -216,11 +215,11 @@
             }
         }
         var time = 0;
-        curEle.zhufengTimer = window.setInterval(function () {
+        curEle.zyyTimer = window.setInterval(function () {
             time += 10;
             if (time >= duration) {
                 utils.css(curEle, target);
-                window.clearInterval(curEle.zhufengTimer);
+                window.clearInterval(curEle.zyyTimer);
                 callBack && callBack.call(curEle);
                 return;
             }
@@ -233,5 +232,5 @@
         }, 10);
     }
 
-    window.zhufengAnimate = move;
+    window.zyyAnimate = move;
 }();

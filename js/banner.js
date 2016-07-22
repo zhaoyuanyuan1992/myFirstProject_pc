@@ -1,4 +1,3 @@
-
 var banner = document.getElementById("bnr_bnr");
 var bannerInner = utils.firstChild(banner),
     bannerTip = utils.children(banner, "ul")[0],
@@ -9,7 +8,7 @@ var divList = bannerInner.getElementsByTagName("div"),
     imgList = bannerInner.getElementsByTagName("img"),
     oLis = bannerTip.getElementsByTagName("li");
 
-/*//1、Ajax读取数据
+/*//Ajax读取数据
 var jsonData = null;
 ~function () {
     var xhr = new XMLHttpRequest;
@@ -22,7 +21,7 @@ var jsonData = null;
     xhr.send(null);
 }();*/
 
-//2、数据绑定
+//数据绑定
 /*~function () {
     var str = "", str2 = "";
     if (jsonData) {
@@ -36,7 +35,7 @@ var jsonData = null;
     bannerTip.innerHTML = str2;
 }();*/
 
-//3、图片的延迟加载
+//图片的延迟加载
 window.setTimeout(lazyImg, 500);
 function lazyImg() {
     for (var i = 0, len = imgList.length; i < len; i++) {
@@ -51,7 +50,7 @@ function lazyImg() {
                 if (i === 0) {
                     var curDiv = curImg.parentNode;
                     curDiv.style.zIndex = 1;
-                    zhufengAnimate(curDiv, {opacity: 1}, 200);
+                    zyyAnimate(curDiv, {opacity: 1}, 200);
                 }
                 oImg = null;
             }
@@ -59,7 +58,7 @@ function lazyImg() {
     }
 }
 
-//4、实现我们的自动轮播
+//实现我们的自动轮播
 var interval = 2000, autoTimer = null, step = 0;//->记录当前展示图片的索引
 autoTimer = window.setInterval(autoMove, interval);
 function autoMove() {
@@ -81,7 +80,7 @@ function setBanner() {
         var curDiv = divList[i];
         if (i === step) {
             utils.css(curDiv, "zIndex", 1);
-            zhufengAnimate(curDiv, {opacity: 1}, 200, function () {
+            zyyAnimate(curDiv, {opacity: 1}, 200, function () {
                 var curDivSib = utils.siblings(this);
                 for (var k = 0, len = curDivSib.length; k < len; k++) {
                     utils.css(curDivSib[k], "opacity", 0);
@@ -99,7 +98,7 @@ function setBanner() {
     }
 }
 
-//5、实现鼠标悬停停止自动轮播和离开在开启自动轮播的效果
+//实现鼠标悬停停止自动轮播和离开在开启自动轮播的效果
 banner.onmouseover = function () {
     window.clearInterval(autoTimer);
     bannerLeft.style.display = bannerRight.style.display = "block";
@@ -109,7 +108,7 @@ banner.onmouseout = function () {
     bannerLeft.style.display = bannerRight.style.display = "none";
 };
 
-//6、实现点击焦点切换
+//实现点击焦点切换
 ~function () {
     for (var i = 0, len = oLis.length; i < len; i++) {
         var curLi = oLis[i];
@@ -121,7 +120,7 @@ banner.onmouseout = function () {
     }
 }();
 
-//7、实现左右切换
+//实现左右切换
 bannerRight.onclick = autoMove;
 bannerLeft.onclick = function () {
     if (step === 0) {

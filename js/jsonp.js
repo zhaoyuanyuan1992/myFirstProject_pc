@@ -1,6 +1,3 @@
-/**
- * Created by zhufengpeixun on 2016/5/8.
- */
 ;
 (function (undefined) {
     /**
